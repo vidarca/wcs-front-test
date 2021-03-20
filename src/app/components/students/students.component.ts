@@ -119,13 +119,6 @@ export class StudentsComponent implements OnInit {
       this.error = 'Escriba el nombre del estudiante completo'
       return false
     }
-    if(savedStudents !== null && savedStudents.some(
-      students => students.name.trim().toLowerCase() === this.newStudent.trim().toLowerCase())
-    ){
-      input.addClass('error');
-      this.error = 'El estudiante que desea agregar ya está registrado'
-      return false
-    }
     return true
   }
 
