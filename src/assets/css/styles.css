@@ -323,7 +323,7 @@ header ul li ul li{
     line-height: 90px;
 }
 
-/* Characters Section */
+/* Characters Page */
 
 #characters{
     height: 100vh;
@@ -348,7 +348,7 @@ header ul li ul li{
     flex-direction: column;
 }
 
-/* Students Section */
+/* Students Page */
 
 #students{
     height: 100vh;
@@ -374,7 +374,7 @@ header ul li ul li{
     margin: 0 20px;
 }
 
-/* Teachers Section */
+/* Teachers Page */
 
 #teachers{
     height: 100vh;
@@ -391,7 +391,7 @@ header ul li ul li{
     justify-content: flex-start;
 }
 
-/* Requests Section */
+/* Requests Page */
 
 #requests{
     height: 100vh;
@@ -405,5 +405,17 @@ header ul li ul li{
 }
 
 #requests .content{
+    justify-content: flex-start;
+}
+
+/* Error Page */
+
+#error{
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+#error .content{
     justify-content: flex-start;
 }
