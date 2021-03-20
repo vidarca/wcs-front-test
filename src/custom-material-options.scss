@@ -1,0 +1,28 @@
+// Imports Angular Material Theme
+@import '~@angular/material/theming';
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+// Theme Colors
+@include mat-core();
+
+$my-app-primary: mat-palette($mat-blue, 500, 600, 700);
+$my-app-accent:  mat-palette($mat-red, 700, 800, 900);
+$my-app-warn:    mat-palette($mat-green, 700);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+@include angular-material-theme($my-app-theme);
+
+// Imports Typography
+@font-face {
+    font-family: 'Crimson Pro';
+    src: url('./assets/fonts/CrimsonPro.ttf');
+}
+
+$custom-typography-theme: (
+    typography: mat-typography-config(
+        $font-family: 'Crimson Pro',
+        $headline: mat-typography-level(34px, 38px, 700),
+        $body-1: mat-typography-level(20px, 22px, 400)
+        )
+        );
+        
+@include angular-material-typography($custom-typography-theme);
