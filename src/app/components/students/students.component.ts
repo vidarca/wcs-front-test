@@ -27,6 +27,7 @@ export class StudentsComponent implements OnInit {
   public dataSource: MatTableDataSource<any>;
   public error: string;
   private _sort: MatSort;
+  public success: boolean = false;
   
   name = new FormControl([Validators.required]);
   house = new FormControl([Validators.required, Validators.minLength(5)]);
@@ -97,11 +98,7 @@ export class StudentsComponent implements OnInit {
   public reqStudent(form){
     if(this.checkValidForm()){
       this._localstorageService.uploadLocalStorage('characters', this.newStudent);
-    }
-  }
-
-  public checkValidForm(){
-    if(this.name.errors === null && this.house.errors === null && this.age.errors === null && this.patronus.errors === null){
+      this.success = true;
       this.name.reset('');
       this.house.reset('');
       this.age.reset('');
@@ -110,6 +107,11 @@ export class StudentsComponent implements OnInit {
       this.house.setErrors(null);
       this.age.setErrors(null);
       this.patronus.setErrors(null);
+    }
+  }
+
+  public checkValidForm(){
+    if(this.name.errors === null && this.house.errors === null && this.age.errors === null && this.patronus.errors === null){
       return true
     }else{
       return false

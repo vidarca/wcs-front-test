@@ -175,6 +175,14 @@ input{
     padding: 0 10px;
 }
 
+.success{
+    height: 30px;
+    background-color:rgb(2, 90, 2, .85);
+    color: white;
+    text-align: center;
+    line-height: 30px;
+}
+
 .mat-form-field-label{
     padding: 5px 15px 1px 15px;
 }

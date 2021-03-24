@@ -34,6 +34,7 @@
                 </div>
 
                 <button class="btn btn-submit" type="submit" style="margin-bottom: 1.25em;">Agregar</button>
+                <div *ngIf="success" class="success col-12">Se ha realizado la solicitud con éxito</div>
             </form>
         </div>
 
@@ -75,7 +76,7 @@
             
                 <!-- Row shown when there is no matching data. -->
                 <tr class="mat-row" *matNoDataRow>
-                    <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                    <td class="mat-cell" colspan="4">No hay coincidencia para "{{input.value}}"</td>
                 </tr>
             </table>
             </div>      
