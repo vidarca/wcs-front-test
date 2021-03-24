@@ -19,11 +19,27 @@ export class AppComponent {
         })
         if(parseInt(icon[0].dataset.rot) === 1){
           icon[0].dataset.rot = 2
-          console.log(icon[0].dataset.rot);
         }else{
           icon[0].dataset.rot = 1
         }
       }
     );
+  }
+
+  public mainToggleSubMenu(target){
+    const submenu = $(`${target}`);
+    const icon = $(`*[data-toggle="${target.substring(1)}"]`);
+    if(submenu[0].style.display === 'block'){
+      submenu.slideToggle(function(){
+        icon.css({
+          'transform':'rotate('+ parseInt(icon[0].dataset.rot) * 180 + 'deg)'
+        })
+        if(parseInt(icon[0].dataset.rot) === 1){
+          icon[0].dataset.rot = 2
+        }else{
+          icon[0].dataset.rot = 1
+        }
+      });
+    }
   }
 }

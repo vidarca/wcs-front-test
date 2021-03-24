@@ -2,7 +2,7 @@
   <ul>
     <li><a routerLink="/inicio" routerLinkActive="activated">Inicio</a></li>
     <li class="multi-menu">
-      <a routerLink="/estudiantes" routerLinkActive="activated">
+      <a routerLink="/estudiantes" routerLinkActive="activated" (click)="mainToggleSubMenu('#estudiantes')">
         Estudiantes
       </a>
       <span class="material-icons" (click)="toggleSubMenu('#estudiantes')" data-toggle="estudiantes" data-rot = "1">keyboard_arrow_up</span>

@@ -1,5 +1,27 @@
 html, body { height: 100%; }
-body { margin: 0; background-color: rgb(192,193,197); background-position: fixed;}
+body { margin: 0; background-color: rgb(192,193,197);}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888;
+    z-index: 999999999;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+  
 
 /* Global settings and classes */
 
@@ -43,7 +65,7 @@ p{
 }
 
 .activated{
-    color: white;
+    background-color: rgb(45,45,47,.75);
 }
 
 .error{
@@ -141,6 +163,18 @@ input{
     border: none !important;
 }
 
+.col-6{
+    flex: 0 0 auto;
+    width: calc((100% - 40px) / 2);
+    padding: 0 10px;
+}
+
+.col-12{
+    flex: 0 0 auto;
+    width: 100%;
+    padding: 0 10px;
+}
+
 .mat-form-field-label{
     padding: 5px 15px 1px 15px;
 }
@@ -223,10 +257,7 @@ input{
     flex-wrap: nowrap;
     align-items: center;
     justify-content: center;
-}
-
-#grid #charac-table table tbody tr td img{
-    width: 250px;
+    width: 150px;
 }
 
 /* Pagina de inicio */
@@ -261,12 +292,19 @@ header ul li{
 }
 
 header ul li a{
+    display: inline-block;
     transition: 400ms colo ease;
     color: inherit;
+    width: 100%;
+    color: white;
 }
 
 header ul li span{
     cursor: pointer;
+    position: absolute;
+    right: 0;
+    top: 40px;
+    color: white;
 }
 
 
@@ -301,7 +339,7 @@ header ul li ul li{
     width: auto;
     white-space: nowrap;
     padding: 0 10px;
-    color: black;
+    color: white;
 }
 
 #home{
@@ -332,10 +370,6 @@ header ul li ul li{
     overflow-y: scroll;
 }
 
-#characters::-webkit-scrollbar{
-    display: none;
-}
-
 #characters .content{
     justify-content: flex-start;
 }
@@ -358,7 +392,7 @@ header ul li ul li{
 }
 
 #students::-webkit-scrollbar{
-    display: none;
+    z-index: 9999999;
 }
 
 #students .content{
@@ -383,10 +417,6 @@ header ul li ul li{
     overflow-y: scroll;
 }
 
-#teachers::-webkit-scrollbar{
-    display: none;
-}
-
 #teachers .content{
     justify-content: flex-start;
 }
@@ -398,10 +428,6 @@ header ul li ul li{
     width: 100%;
     overflow-x: hidden;
     overflow-y: scroll;
-}
-
-#requests::-webkit-scrollbar{
-    display: none;
 }
 
 #requests .content{

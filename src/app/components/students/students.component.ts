@@ -4,7 +4,7 @@ import { LocalstorageService } from '../../services/localstorage/localstorage.se
 import { Character } from '../../models/character';
 import { MatTableDataSource } from '@angular/material/table';
 import {MatSort} from '@angular/material/sort';
-import * as $ from 'jquery';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-students',
@@ -15,16 +15,27 @@ import * as $ from 'jquery';
 export class StudentsComponent implements OnInit {
 
   public characters: Character[];
-  public newStudent: string;
+  public houses: string[] = ['Slytherin', 'Gryffindor', 'Ravenclaw', 'Hufflepuff'];
+  public newStudent = {
+    name: '',
+    age: '',
+    house: '',
+    patronus: ''
+  };
   public currentYear: number;
   public displayedColumns: string[] = ['name', 'patronus', 'age', 'image'];
   public dataSource: MatTableDataSource<any>;
   public error: string;
   private _sort: MatSort;
+  
+  name = new FormControl([Validators.required]);
+  house = new FormControl([Validators.required, Validators.minLength(5)]);
+  patronus = new FormControl([Validators.required]);
+  age = new FormControl([Validators.required, Validators.min(1)]);
 
   @ViewChild(MatSort) set matSort(ms: MatSort) {
     this._sort = ms;
-    this.dataSource.sort = this._sort;
+    this.dataSource.sort = this._sort
   }
 
   constructor(
@@ -34,7 +45,6 @@ export class StudentsComponent implements OnInit {
     this.characters = [];
     this.currentYear = new Date().getFullYear();
     this.dataSource = new MatTableDataSource();
-    this.newStudent = '';
   }
 
   ngOnInit(): void {
@@ -84,49 +94,25 @@ export class StudentsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  public searchStudent(){
-    let matches = [];
-    const searchValue = this.newStudent.trim().toLowerCase();
-    this.characters.forEach(character => {
-      if(character.name.trim().toLowerCase().indexOf(searchValue) >= 0){
-        matches.push(character);
-      }
-    })
-    return matches
-  }
-
   public reqStudent(form){
-    let student: any = '';
     if(this.checkValidForm()){
-      student = this.searchStudent()[0]
-      this._localstorageService.uploadLocalStorage('characters', student);
-    }else{
-      console.log(this.error);
+      this._localstorageService.uploadLocalStorage('characters', this.newStudent);
     }
-    form.reset();
   }
 
   public checkValidForm(){
-    const input = $('#input').find('.mat-form-field-flex');
-    const savedStudents: any = this._localstorageService.checkLocalStorage('characters');
-    if(this.searchStudent().length === 0){
-      input.addClass('error');
-      this.error = 'El estudiante que desea agregar no existe'
+    if(this.name.errors === null && this.house.errors === null && this.age.errors === null && this.patronus.errors === null){
+      this.name.reset('');
+      this.house.reset('');
+      this.age.reset('');
+      this.patronus.reset('');
+      this.name.setErrors(null);
+      this.house.setErrors(null);
+      this.age.setErrors(null);
+      this.patronus.setErrors(null);
+      return true
+    }else{
       return false
-    }
-    if(this.searchStudent().length > 1){
-      input.addClass('error');
-      this.error = 'Escriba el nombre del estudiante completo'
-      return false
-    }
-    return true
-  }
-
-  public removeErr(){
-    const input = $('#input').find('.mat-form-field-flex');
-    if(this.newStudent !== '' && input.hasClass('error')){
-      input.removeClass('error');
-      this.error = '';
     }
   }
 

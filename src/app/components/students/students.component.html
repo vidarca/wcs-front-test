@@ -2,12 +2,37 @@
     <div class="content">
         <div>
             <h2>Solicitar nuevo estudiante</h2>
-            <form class="d-flex flex-align-center justify-content-center flex-wrap flex-column" #stuReqForm="ngForm" (ngSubmit)="reqStudent(stuReqForm)">
-                <mat-form-field appearance="legacy" id="input">
+            <form class="d-flex flex-align-center justify-content-center flex-wrap flex-row" #stuReqForm="ngForm" (ngSubmit)="reqStudent(stuReqForm)">
+                <mat-form-field class="col-6" appearance="legacy">
                     <mat-label>Nombre</mat-label>
-                    <input type="text" matInput placeholder="Nombre" name="name" #name="ngModel" [(ngModel)]="newStudent" (keypress)="removeErr()"/>
+                    <input type="text" matInput placeholder="Nombre" name="name" [(ngModel)]="newStudent.name" [formControl]="name" required/>
+                    <mat-error *ngIf="name.invalid && !name.pristine">This field is required</mat-error>
                 </mat-form-field>
-                <span class="text-error" *ngIf="error && error !== ''">{{error}}</span>
+
+                <mat-form-field class="col-6" appearance="legacy">
+                    <mat-label>Patronus</mat-label>
+                    <input type="text" matInput placeholder="Patronus" name="patronus" [(ngModel)]="newStudent.patronus" [formControl]="patronus" required/>
+                    <mat-error *ngIf="patronus.invalid && !patronus.pristine">This field is required</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-6" appearance="legacy">
+                    <mat-label>Age</mat-label>
+                    <input type="text" matInput placeholder="Age" name="age" [(ngModel)]="newStudent.age" [formControl]="age" required/>
+                    <mat-error *ngIf="age.invalid && !age.pristine" class="mat-accent">This field is required and grater than 0</mat-error>
+                </mat-form-field>
+
+                <div class="col-12 d-flex flex-align-center justify-content-center flex-row">
+                    <mat-form-field class="col-6" appearance="fill">
+                        <mat-label>Elija una casa</mat-label>
+                        <mat-select [(ngModel)]="newStudent.house" name="house" [formControl]="house" required>
+                            <mat-option *ngFor="let house of houses" [value]="house">
+                            {{house}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="house.invalid && !house.pristine">This field is required</mat-error>
+                    </mat-form-field>
+                </div>
+
                 <button class="btn btn-submit" type="submit" style="margin-bottom: 1.25em;">Agregar</button>
             </form>
         </div>

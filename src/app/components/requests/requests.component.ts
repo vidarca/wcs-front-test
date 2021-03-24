@@ -14,7 +14,7 @@ export class RequestsComponent implements OnInit {
   public characters: any;
   public newStudent: string;
   public currentYear: number;
-  public displayedColumns: string[] = ['name', 'patronus', 'age', 'image'];
+  public displayedColumns: string[] = ['name', 'patronus', 'age'];
   public dataSource: MatTableDataSource<any>;
   private _sort: MatSort;
 

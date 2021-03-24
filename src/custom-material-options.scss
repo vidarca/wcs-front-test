@@ -7,8 +7,7 @@
 
 $my-app-primary: mat-palette($mat-blue, 500, 600, 700);
 $my-app-accent:  mat-palette($mat-red, 700, 800, 900);
-$my-app-warn:    mat-palette($mat-green, 700);
-$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent, $my-app-warn);
+$my-app-theme: mat-light-theme($my-app-primary, $my-app-accent);
 @include angular-material-theme($my-app-theme);
 
 // Imports Typography
